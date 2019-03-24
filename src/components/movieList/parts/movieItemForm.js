@@ -17,7 +17,13 @@ export default class MovieItemForm extends Component {
 	};
 
 	cancelForm = () => {
-		this.setState({title: this.props.title, description: this.props.description});
+		this.setState({
+			title: this.props.title,
+			description: this.props.description,
+			img: this.props.img,
+			country: this.props.country,
+			genre: this.props.genre,
+		});
 		this.props.showFrom();
 	};
 
