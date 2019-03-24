@@ -4,9 +4,6 @@ import MenuItemContent from "./movieItemContent";
 
 export default class MovieItem extends Component {
 	state = {
-		title: this.props.title,
-		description: this.props.description,
-		img: this.props.img,
 		showForm: false,
 	};
 
@@ -14,38 +11,30 @@ export default class MovieItem extends Component {
 		this.setState(prevState => ({showForm: !prevState.showForm}));
 	};
 
-	changeTitle = (e) => {
-		this.setState({title: e});
-	};
-
-	changeDescription = (e) => {
-		this.setState({description: e});
-	};
-
-	changeImage = (e) => {
-		this.setState({img: e});
-	};
-
 	render() {
+		const {title, description, img, country, genre, changeMovieInformation, movieId} = this.props;
 		return (
 			<div className={`movie-block--item ${this.state.showForm ? "show-block" : ""}`}>
-
 				<MenuItemContent
-					title={this.state.title}
-					description={this.state.description}
-					img={this.state.img}
+					title={title}
+					description={description}
+					country={country}
+					genre={genre}
+					img={img}
 					showFrom={this.showFrom}
 				/>
 				<MovieItemForm
-					title={this.state.title}
-					description={this.state.description}
-					img={this.state.img}
-					changeTitle={this.changeTitle}
-					changeDescription={this.changeDescription}
-					changeImage={this.changeImage}
+					title={title}
+					description={description}
+					country={country}
+					genre={genre}
+					img={img}
+					movieId={movieId}
+					changeMovieInformation={changeMovieInformation}
 					showFrom={this.showFrom}
 				/>
 			</div>
 		);
 	}
 }
+
