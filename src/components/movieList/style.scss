@@ -7,9 +7,6 @@
 		box-shadow: 1px 1px 10px 1px rgba(#ccc, 0.5);
 		margin-right: 30px;
 		margin-bottom: 30px;
-		transform-style: preserve-3d;
-		perspective: 1000px;
-		min-height: 530px;
 		transition: 0.2s;
 		&:hover {
 			box-shadow: 1px 1px 25px 7px rgba(#ccc, 0.9);
@@ -17,26 +14,10 @@
 		&:nth-of-type(3n) {
 			margin-right: 0;
 		}
-		
-		&.show-block {
-			min-height: 615px;
-			.movie-block--form {
-				transform: rotateY(0deg);
-				visibility: visible;
-				opacity: 1;
-			}
-			.movie-block--content {
-				transform: rotateY(-180deg);
-				visibility: hidden;
-				opacity: 0;
-			}
-		}
 	}
 	&--form,
 	&--content {
-		transform: rotateY(0deg);
-		transform-style: preserve-3d;
-		transition: all 0.3s, transform .7s cubic-bezier(.4, .2, .2, 1);
+		position: relative;
 		p {
 			margin-bottom: 10px;
 			font-size: 15px;
@@ -103,8 +84,9 @@
 	
 	&--form {
 		display: flex;
+		flex-wrap: wrap;
 		width: 100%;
-		padding: 10px 10px 60px;
+		padding: 10px 10px 30px;
 		form {
 			width: 100%;
 		}
