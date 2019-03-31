@@ -1,6 +1,6 @@
 body {
 	font-size: 16px;
-	font-family: "Arial",sans-serif;
+	font-family: "Arial", sans-serif;
 }
 
 .wrapper {
@@ -17,4 +17,73 @@ body {
 	padding: 0;
 	outline: none;
 	box-sizing: border-box;
+}
+
+a {
+	transition: 0.2s;
+	&:hover {
+		text-decoration-color: transparent;
+	}
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	box-shadow: 0px 1px 10px 1px rgba(#000, 0.5);
+	margin-bottom: 30px;
+}
+
+.btns-block {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	padding: 0 10px;
+	.btn {
+		width: calc(50% - 5px);
+	}
+}
+
+.btn {
+	display: inline-block;
+	vertical-align: middle;
+	background-color: blue;
+	text-align: center;
+	color: #ffffff;
+	height: 40px;
+	border-radius: 3px;
+	overflow: hidden;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-decoration: none;
+	transition: 0.2s;
+	&:hover {
+		background-color: darken(blue, 20%);
+	}
+}
+
+.default-input-title {
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+.default-input {
+	display: block;
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	&.textarea {
+		height: 100px;
+		resize: none;
+	}
+	&:focus {
+		border: 1px solid darken(#ccc, 20%);
+	}
 }

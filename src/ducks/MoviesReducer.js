@@ -1,10 +1,14 @@
 import {handleFetch} from "../util/fetch";
 
 const initialState = {
-	moviesArray: new Map()
+	singleItem: null,
+	showPreloader: false,
+	moviesArray: new Map(),
 };
 
 const GET_MOVIE = "GET_MOVIE";
+const SHOW_PRELOADER = "SHOW_PRELOADER";
+const GET_SINGLE_MOVIE = "GET_SINGLE_MOVIE";
 const CHANGE_MOVIE = "CHANGE_MOVIE";
 
 export const changeMovieInformation = (id, value, field) => ({
@@ -13,6 +17,20 @@ export const changeMovieInformation = (id, value, field) => ({
 	value,
 	field,
 });
+
+export const getSingleMovie = (id) => dispatch => {
+	dispatch({
+		type: SHOW_PRELOADER,
+	});
+	handleFetch(null, id)
+		.then(res => {
+			dispatch({
+				type: GET_SINGLE_MOVIE,
+				res
+			});
+		})
+		.catch(err => console.log(err));
+};
 
 export const getMovies = () => dispatch => {
 	handleFetch('marvel')
@@ -67,11 +85,25 @@ export const reducer = (state = initialState, action) => {
 			};
 
 		case CHANGE_MOVIE:
+			console.log(state);
 			let movieItem = state.moviesArray.get(action.id);
 			movieItem[action.field] = action.value;
 			return {
 				...state,
 				moviesArray: state.moviesArray.set(action.id, movieItem)
+			};
+
+		case GET_SINGLE_MOVIE:
+			return {
+				...state,
+				singleItem: action.res,
+				showPreloader: false
+			};
+
+		case SHOW_PRELOADER:
+			return {
+				...state,
+				showPreloader: true
 			};
 
 		default:

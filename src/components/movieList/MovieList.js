@@ -1,48 +1,47 @@
 import React, {Component} from "react";
-import MovieItem from "./parts/movieItem";
-import {getMovies, changeMovieInformation} from "../../ducks/MoviesReducer";
+import MovieItemContent from "../common/MovieItemContent";
 
 import "./style.scss";
 import {connect} from "react-redux";
 
 class MovieList extends Component {
-	componentDidMount() {
-		this.props.getMovies();
-	};
 
 	render() {
-		const {moviesState, changeMovieInformation} = this.props;
+		const {moviesState, moviesTitle, moviesMaxLength} = this.props;
 
 		return (
-			<div className={"wrapper"}>
-				<div className={"movie-block"}>
-					{
-						moviesState.moviesArray.size > 0 && Array.from(moviesState.moviesArray.values()).map((item) =>
-							<MovieItem
-								key={item.imdbID}
-								movieId={item.imdbID}
-								title={item.Title}
-								description={item.Plot}
-								country={item.Country}
-								genre={item.Genre}
-								img={item.Poster}
-								changeMovieInformation={changeMovieInformation}
-							/>
-						)
-					}
+			<div className={"movie-list"}>
+				<header className="header">
+					<h1>{moviesTitle ? moviesTitle : "List of movies"}</h1>
+				</header>
+				<div className={"wrapper"}>
+					<div className={"movie-block"}>
+						{
+							moviesState.moviesArray && Array.from(moviesState.moviesArray.values()).map((item, index) =>
+								(moviesMaxLength ? index < moviesMaxLength : index < moviesState.moviesArray.size) &&
+								<div className={`movie-block--item`} key={item.imdbID}>
+									<MovieItemContent
+										title={item.Title}
+										description={item.Plot}
+										country={item.Country}
+										genre={item.Genre}
+										img={item.Poster}
+										movieId={item.imdbID}
+									/>
+								</div>
+							)
+						}
+					</div>
 				</div>
 			</div>
 		);
 	}
-
 }
 
 const mapStateToProps = state => ({
 	moviesState: state.moviesReducer
 });
 const mapDispatchToProps = {
-	getMovies,
-	changeMovieInformation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

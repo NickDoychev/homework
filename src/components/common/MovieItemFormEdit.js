@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import editIcon from "../../images/icons/edit-not-black.png";
-import DefaultInputAndTextarea from "../../../globalComponents/DefaultInputAndTextarea";
+import editIcon from "../images/icons/edit-not-black.png";
+import DefaultInputAndTextarea from "../../globalComponents/DefaultInputAndTextarea";
+import history from "../../history";
 
-export default class MovieItemForm extends Component {
+export default class MovieItemFormEdit extends Component {
 	state = {
 		title: this.props.title,
 		description: this.props.description,
@@ -24,7 +25,7 @@ export default class MovieItemForm extends Component {
 			country: this.props.country,
 			genre: this.props.genre,
 		});
-		this.props.showFrom();
+		history.push(`/movies/${this.props.movieId}`)
 	};
 
 	changeTextInput = (e) => {
@@ -38,7 +39,7 @@ export default class MovieItemForm extends Component {
 		changeMovieInformation(movieId, this.state.country, "Country");
 		changeMovieInformation(movieId, this.state.genre, "Genre");
 		changeMovieInformation(movieId, this.state.img, "Poster");
-		this.props.showFrom()
+		history.push(`/movies/${this.props.movieId}`)
 	};
 
 	render() {

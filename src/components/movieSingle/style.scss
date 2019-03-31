@@ -1,0 +1,17 @@
+.movie-block--single {
+	.movie-list {
+		.header {
+			box-shadow: none;
+		}
+		.wrapper {
+			padding: 0;
+		}
+	}
+}
+
+.link-to-dashboard-block {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 30px;
+}

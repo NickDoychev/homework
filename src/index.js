@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import "./globalStyle/style.scss";
-import * as serviceWorker from './serviceWorker';
-
+import {ConnectedRouter} from 'connected-react-router';
 import {Provider} from "react-redux";
 
+import * as serviceWorker from './serviceWorker';
+import history from './history';
 import {store} from "./ducks";
 
+import "./globalStyle/style.scss";
+
+
+import RouterItems from "./routerItems";
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App/>
+		<ConnectedRouter history={history}>
+			<RouterItems/>
+		</ConnectedRouter>
 	</Provider>,
 	document.getElementById('root')
 );
