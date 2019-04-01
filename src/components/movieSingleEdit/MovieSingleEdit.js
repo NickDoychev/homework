@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux"
-import {getSingleMovie, changeMovieInformation} from "../../ducks/MoviesReducer";
+import {changeMovieInformation} from "../../ducks/MoviesReducer";
 
 import MovieItemFormEdit from "../common/MovieItemFormEdit";
 import Preloader from "../common/Preloader";
@@ -43,7 +43,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-	getSingleMovie,
 	changeMovieInformation,
 };
 

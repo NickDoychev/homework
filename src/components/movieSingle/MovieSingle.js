@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux"
 import {Link} from "react-router-dom";
-import {getSingleMovie} from "../../ducks/MoviesReducer";
 
 import "./style.scss";
 
@@ -58,7 +57,6 @@ const mapStateToProps = state => ({
 	showPreloader: state.moviesReducer.showPreloader
 });
 const mapDispatchToProps = {
-	getSingleMovie,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieSingle);

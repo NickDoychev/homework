@@ -18,20 +18,6 @@ export const changeMovieInformation = (id, value, field) => ({
 	field,
 });
 
-export const getSingleMovie = (id) => dispatch => {
-	dispatch({
-		type: SHOW_PRELOADER,
-	});
-	handleFetch(null, id)
-		.then(res => {
-			dispatch({
-				type: GET_SINGLE_MOVIE,
-				res
-			});
-		})
-		.catch(err => console.log(err));
-};
-
 export const getMovies = () => dispatch => {
 	handleFetch('marvel')
 		.then(res => {
